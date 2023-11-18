@@ -5,10 +5,9 @@ using namespace std;
 
 class Blackjack {
 public: 
-    Blackjack(const int totalMoney) : moneyTotal(totalMoney) {
+    Blackjack() {
 
     }   
 private:
-    const int moneyTotal;
-    
+
 }
