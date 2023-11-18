@@ -1,2 +1,0 @@
-# blackjack
-C++ Blackjack casino
