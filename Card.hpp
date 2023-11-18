@@ -81,3 +81,5 @@ bool operator==(const Card &lhs, const Card &rhs);
 
 //EFFECTS Returns true if lhs is not the same card as rhs.
 bool operator!=(const Card &lhs, const Card &rhs);
+
+#endif // CARD_HPP
