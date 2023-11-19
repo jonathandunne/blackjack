@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Blackjack.cpp"
 #include "Roulette.cpp"
-#include "HighLow.cpp"
+#include "HigherOrLower.cpp"
 
 using namespace std;
 
@@ -28,20 +28,19 @@ int main(int argc, char *argv[]) {
             cout << "\n";
         }
         else if(gamenum == 1) {
-            Blackjack game = Blackjack();
-            haveMoney = game.play(startingMoney);
+            // Blackjack game = Blackjack();
+            // haveMoney = game.play(startingMoney);
             cout << "Thanks for playing Blackjack!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         } else if(gamenum == 2) {
             Roulette game = Roulette();
-            haveMoney = game.play(startingMoney);
+            // haveMoney = game.play(startingMoney);
             cout << "Thanks for playing Roulette!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         } else if(gamenum == 3) {
-            HighLow game = HigherOrLower();
-            haveMoney = game.play(startingMoney);
+            HigherOrLower game = HigherOrLower(startingMoney);
             cout << "Thanks for playing Higher-or-Lower!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
