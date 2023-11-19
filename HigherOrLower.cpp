@@ -15,7 +15,7 @@ HigherOrLower::HigherOrLower(int &balance) : streak(0), playing(true), loss(fals
     cout << "Place your bet: ";
     string bet_string;
     cin >> bet_string;
-    int bet = stoi(bet_string);
+    double bet = stoi(bet_string);
     cout << endl;
     while (bet > balance || bet <= 0) {
         cout << "Invalid Bet" << endl;
@@ -28,7 +28,7 @@ HigherOrLower::HigherOrLower(int &balance) : streak(0), playing(true), loss(fals
     card = (pack.deal_one());
     string guess;
     while (playing && !pack.empty() && !loss) {
-        cout << "The current card is the " << card.get_rank() << " of " << card.get_suit() << endl;
+        cout << "The current card is the " << card << endl;
         int initialRank = card.get_rank();
         cout << "Is the next card higher or lower?" << endl;
         cin >> guess;
@@ -43,7 +43,7 @@ HigherOrLower::HigherOrLower(int &balance) : streak(0), playing(true), loss(fals
             }
         }
         card = pack.deal_one();
-        cout << "The new card is the " << card.get_rank() << " of " << card.get_suit() << endl;
+        cout << "The new card is the " << card << endl;
         int secondRank = card.get_rank();
         if (initialRank == 12) {
             initialRank = -1;
@@ -64,6 +64,7 @@ HigherOrLower::HigherOrLower(int &balance) : streak(0), playing(true), loss(fals
             playing = false;
         }
         if (playing) {
+            cout << "Your bet is now worth: " << floor(bet) << endl;
             cout << "Do you want to continue (Y/N)?" << endl;
             string choice;
             cin >> choice;
