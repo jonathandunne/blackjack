@@ -61,6 +61,15 @@ bool Roulette::play(int &money) {
             cin >> bet;
             cout << endl;
     int num = rand() % 38;
+    string number;
+    if(num == 37) {
+        number = "0";
+    } else if(num == 38) {
+        number = "00";
+    } else {
+        number = to_string(num);
+    }
+    string color = my_map[number];
 
             if (bet == "r/b") {
             // red or black
