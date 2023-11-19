@@ -125,10 +125,10 @@ void play(Roulette& rouletteGame) {
     cout << "Enter bet amount: ";
     cin >> betAmount;
 
-    cout << "Enter bet type (r/b, o/e, h/l, number): ";
+    cout << "Enter bet type (options: r/b, o/e, h/l, number): ";
     cin >> betType;
 
-    cout << "Enter bet option (for color: red/black, for odd/even: odd/even, for high/low: high/low, for number: any number): ";
+    cout << "Enter bet option (for color: red | black, for oddeven: odd | even, for high/low: high | low, for number: any number): ";
     cin >> betOption;
 
     // place the bet
