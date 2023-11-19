@@ -77,6 +77,7 @@ class Blackjack {
                     cout << "Dealer draws " << dealer_hand[index2] << endl;
                     add_score(score_card(dealer_hand[index2], 'd'), 'd');
                     cout << "Dealer's score is " << dealer_score;
+                    index2++;
                 }
                 if (!dealer_bust) {
                     cout << "Dealer stands with " << dealer_score << " points";
