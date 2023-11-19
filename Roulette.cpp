@@ -96,21 +96,23 @@ int Roulette::calculateWinnings() {
     if (betType == "r/b") {
         isWin = (betOption == lastColorSpun);
     } else if (betType == "o/e") {
-        int number = std::stoi(lastNumberSpun);
+        int number = stoi(lastNumberSpun);
         isWin = ((betOption == "odd") && (number % 2 != 0)) || ((betOption == "even") && (number % 2 == 0));
     } else if (betType == "h/l") {
-        int number = std::stoi(lastNumberSpun);
+        int number = stoi(lastNumberSpun);
         isWin = ((betOption == "high") && (number >= 19)) || ((betOption == "low") && (number <= 18));
     } else if (betType == "number") {
-        int number = std::stoi(lastNumberSpun);
-        isWin = (betOption == std::to_string(number));
+        int number = stoi(lastNumberSpun);
+        isWin = (betOption == to_string(number));
     }
 
     if (isWin) {
-        playerMoney += betAmount; // Win doubles the bet amount
+        // win doubles the bet amount
+        playerMoney += betAmount; 
         return betAmount * 2;
     } else {
-        playerMoney -= betAmount; // Lose the bet amount
+        // lose the bet amount
+        playerMoney -= betAmount; 
         return 0;
     }
 }
@@ -119,7 +121,7 @@ void play(Roulette& rouletteGame) {
     int betAmount;
     string betType, betOption;
 
-    // Ask for the bet details
+    // ask for the bet details
     cout << "Enter bet amount: ";
     cin >> betAmount;
 
@@ -129,14 +131,14 @@ void play(Roulette& rouletteGame) {
     cout << "Enter bet option (for color: red/black, for odd/even: odd/even, for high/low: high/low, for number: any number): ";
     cin >> betOption;
 
-    // Place the bet
+    // place the bet
     rouletteGame.placeBet(betAmount, betType, betOption);
 
-    // Spin the wheel and display the result
+    // spin the wheel and display the result
     auto result = rouletteGame.spin();
     cout << "The wheel landed on number " << result.first << " which is color " << result.second << endl;
 
-    // Calculate and display winnings
+    // calculate the winnings
     int winnings = rouletteGame.calculateWinnings();
     if (winnings > 0) {
         cout << "You won " << winnings << "!" << endl;
