@@ -24,7 +24,6 @@ using namespace std;
                 cout << endl;
             }
         
-        
             player_hand.push_back(pack.deal_one());
             player_hand.push_back(pack.deal_one());
             dealer_hand.push_back(pack.deal_one());
