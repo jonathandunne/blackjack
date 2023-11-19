@@ -13,6 +13,7 @@ Pack::Pack() {
             Rank r = static_cast<Rank>(rank);
             Suit s = static_cast<Suit>(suit);
             Card card(r, s);
+            // array has 0 to 12 elements
             cards[suit * 13 + rank] = card; 
         }
     }
