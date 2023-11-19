@@ -10,9 +10,7 @@
 
 using namespace std;
 
-class HigherOrLower {
-public:
-    HigherOrLower(int &balance) {
+    HigherOrLower::HigherOrLower(int &balance) {
         pack.shuffle();
         cout << "Place your bet: ";
         cin >> bet;
@@ -76,18 +74,9 @@ public:
         }
         balance += bet;
     }
-    bool haveMoney(int &money) {
+    bool HigherOrLower::haveMoney(int &money) {
         if(money < 10) {
             return false;
         }
         return true;
     }
-
-private:
-    Pack pack;
-    Card card;
-    double bet = 0;
-    int streak = 0;
-    bool playing = true;
-    bool loss = false;
-};

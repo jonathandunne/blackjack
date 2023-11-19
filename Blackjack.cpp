@@ -8,11 +8,9 @@
 
 using namespace std;
 
-class Blackjack {
-    public: 
-        Blackjack() {
+        Blackjack::Blackjack() {
         }
-        void play(int& balance) {
+        void Blackjack::play(int& balance) {
             pack.shuffle();
             while (bet > balance) {
                 if (bet > balance) {
@@ -104,7 +102,7 @@ class Blackjack {
         }
 
         //Returns the score of the given card and player type
-        int score_card(Card c, char p) {
+        int Blackjack::score_card(Card c, char p) {
             if (c.get_rank() < 9) {
                 return c.get_rank() + 2;
             }
@@ -132,7 +130,7 @@ class Blackjack {
                 }
             }
         }
-        void add_score(int points, char p) {
+        void Blackjack::add_score(int points, char p) {
             if (p == 'p') {
                 if ((points + player_score > 21) && (player_high_aces > 0)) {
                     player_score += points - 10;
@@ -158,15 +156,3 @@ class Blackjack {
                 }
             }
         }
-    private:
-    Pack pack;
-    vector<Card> player_hand;
-    vector<Card> dealer_hand;
-    bool dealer_bust = false;
-    bool player_bust = false;
-    int dealer_high_aces = 0;
-    int player_high_aces = 0;
-    int bet = 0;
-    int dealer_score = 0;
-    int player_score = 0;
-};

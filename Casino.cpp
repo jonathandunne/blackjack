@@ -8,7 +8,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    if(argc == 2) {
+    if(argc != 2) {
         cout << "Please only include starting money in declaration!\n";
         return -1;
     }
@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
             cout << "\n";
         } else if(gamenum == 2) {
             Roulette game = Roulette(startingMoney);
-            game.play(game);
+            game.play();
             cout << "Thanks for playing Roulette!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
