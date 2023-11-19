@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
         cin >> gamenum;
         if(gamenum == 0) {
             cout << "Thanks for playing!\n";
-            cout << "This is your current balance: " << startingMoney; 
+            cout << "This is your current balance: $" << startingMoney; 
             cout << "\n";
         }
         else if(gamenum == 1) {
