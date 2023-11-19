@@ -5,9 +5,15 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
+<<<<<<< HEAD
       "args": ["10000"],
       "cwd": "/Users/erikvn/MHACKS/blackjack",
       "program": "/Users/erikvn/MHACKS/blackjack/build/Debug/outDebug"
+=======
+      "args": ["100000"],
+      "cwd": "/Users/asainterose/Documents/MHACKS/blackjack",
+      "program": "/Users/asainterose/Documents/MHACKS/blackjack/build/Debug/outDebug"
+>>>>>>> f2a271098e67dfb7046f798992c1f1f481e2e6f5
     }
   ]
 }
