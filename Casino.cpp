@@ -2,8 +2,8 @@
 #include <cassert>
 #include <iostream>
 #include "Blackjack.cpp"
-#include "Pack.hpp"
-#include "Card.hpp"
+#include "Roulette.cpp"
+#include "HighLow.cpp"
 
 using namespace std;
 
