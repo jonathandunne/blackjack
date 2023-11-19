@@ -41,6 +41,7 @@ int main(int argc, char *argv[]) {
             cout << "\n";
         } else if(gamenum == 3) {
             HigherOrLower game = HigherOrLower(startingMoney);
+            haveMoney = game.haveMoney(startingMoney);
             cout << "Thanks for playing Higher-or-Lower!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
