@@ -103,7 +103,7 @@ int Roulette::calculateWinnings() {
     }
 }
 
-void Roulette::play() {
+int Roulette::play() {
     int betAmount;
     string betType, betOption;
 
@@ -133,4 +133,5 @@ void Roulette::play() {
         cout << "You lost your bet." << endl;
     }
     cout << "Your current balance is: " << this -> getPlayerMoney() << endl;
+    return getPlayerMoney();
 }

@@ -50,7 +50,10 @@ using namespace std;
             string input;
             int index = 2;
             //Hit or pass stage
-            input = "";
+            cout << "You have " << player_score << " points" << endl;
+                    cout << "Would you like to hit or stand?" << endl;
+                    cin >> input;
+                    cout << endl;
             while ((player_score < 22) && (input != "stand") && (!player_bust)) {
                 while (input != "hit") {
                     if (input != "hit") {

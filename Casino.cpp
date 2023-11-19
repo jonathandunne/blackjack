@@ -16,9 +16,8 @@ int main(int argc, char *argv[]) {
     int gamenum = -1;
     bool haveMoney = true;
     while(gamenum != 0) {
-        cout << "Enter 1 for Blackjack\n";
-        cout << "Enter 2 for Roulette\n";
-        cout << "Enter 3 for Higher-Lower\n";
+        cout << "Enter 1 for Roulette\n";
+        cout << "Enter 2 for Higher-Lower\n";
         cout << "Enter 0 for Quit\n";
         cout << "Select which game you want to play: ";
         cin >> gamenum;
@@ -28,22 +27,16 @@ int main(int argc, char *argv[]) {
             cout << "\n";
         }
         else if(gamenum == 1) {
-            Blackjack game = Blackjack();
-            game.play(startingMoney);
-            cout << "Thanks for playing Blackjack!\n";
-            cout << "This is your current balance: " << startingMoney; 
-            cout << "\n";
-        } else if(gamenum == 2) {
             Roulette game = Roulette(startingMoney);
-            game.play();
+            startingMoney = game.play();
             cout << "Thanks for playing Roulette!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
-        } else if(gamenum == 3) {
+        } else if(gamenum == 2) {
             HigherOrLower game = HigherOrLower(startingMoney);
             haveMoney = game.haveMoney(startingMoney);
             cout << "Thanks for playing Higher-or-Lower!\n";
-            cout << "This is your current balance: " << startingMoney; 
+            cout << "This is your current balance: $" << startingMoney; 
             cout << "\n";
         } else {
             cout << "There is no game corresponding to this number, try another one!\n";

@@ -55,10 +55,10 @@ HigherOrLower::HigherOrLower(int &balance) : streak(0), playing(true), loss(fals
 
         if (guess == "higher" && initialRank < secondRank) {
             streak += 1;
-            bet *= 1.0 / (initialRank / 13.0);
+            bet *= 1.0 / (13 - initialRank / 13.0);
         } else if (guess == "lower" && secondRank < initialRank) {
             streak += 1;
-            bet *= 1.0 / ((13 - initialRank) / 13.0);
+            bet *= 1.0 / ((initialRank) / 13.0);
         } else {
             loss = true;
             playing = false;

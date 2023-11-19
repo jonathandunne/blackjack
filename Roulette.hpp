@@ -13,7 +13,7 @@ public:
     void placeBet(int amount, const std::string& betType, const std::string& betOption);
     std::pair<std::string, std::string> spin();
     int calculateWinnings();
-    void play();
+    int play();
     int getPlayerMoney() const;
 
 private:
