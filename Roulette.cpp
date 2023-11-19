@@ -1,28 +1,14 @@
 #include <iostream>
+#include "Roulette.hpp"
 #include <string>
 #include <map>
 using namespace std;
 
-class Roulette {
-public: 
-    Roulette(int startingMoney);
-    void setStartingMoney(int amount);
-    void placeBet(int amount, const string& betType, const string& betOption);
-    pair<string, string> spin();
-    int calculateWinnings();
-    void play(Roulette& rouletteGame);
-    int getPlayerMoney() const {
-        return playerMoney;
-    }
-private:
-    map<string, string> wheel;
-    string lastNumberSpun;
-    string lastColorSpun;
-    int betAmount;
-    string betType;
-    string betOption;
-    int playerMoney;
-};
+
+
+int Roulette::getPlayerMoney() const {
+    return playerMoney;
+}
 
 Roulette::Roulette(int startingMoney) : betAmount(0), playerMoney(startingMoney) {
     srand(time(nullptr));
@@ -117,7 +103,7 @@ int Roulette::calculateWinnings() {
     }
 }
 
-void play(Roulette& rouletteGame) {
+void Roulette::play() {
     int betAmount;
     string betType, betOption;
 
@@ -130,20 +116,21 @@ void play(Roulette& rouletteGame) {
 
     cout << "Enter bet option (for color: red | black, for oddeven: odd | even, for high/low: high | low, for number: any number): ";
     cin >> betOption;
+    cout << endl;
 
     // place the bet
-    rouletteGame.placeBet(betAmount, betType, betOption);
+    this -> placeBet(betAmount, betType, betOption);
 
     // spin the wheel and display the result
-    auto result = rouletteGame.spin();
-    cout << "The wheel landed on number " << result.first << " which is color " << result.second << endl;
+    auto result = this -> spin();
+    cout << "The wheel landed on number " << result.first << " which is color " << result.second << endl << endl;
 
     // calculate the winnings
-    int winnings = rouletteGame.calculateWinnings();
+    int winnings = this -> calculateWinnings();
     if (winnings > 0) {
         cout << "You won " << winnings << "!" << endl;
     } else {
         cout << "You lost your bet." << endl;
     }
-    cout << "Your current balance is: " << rouletteGame.getPlayerMoney() << endl;
+    cout << "Your current balance is: " << this -> getPlayerMoney() << endl;
 }

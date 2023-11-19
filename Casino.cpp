@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cassert>
 #include <iostream>
-#include "Blackjack.cpp"
-#include "Roulette.cpp"
-#include "HigherOrLower.cpp"
+#include "Blackjack.hpp"
+#include "Roulette.hpp"
+#include "HigherOrLower.hpp"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    if(argc == 2) {
+    if(argc != 2) {
         cout << "Please only include starting money in declaration!\n";
         return -1;
     }
@@ -28,19 +28,20 @@ int main(int argc, char *argv[]) {
             cout << "\n";
         }
         else if(gamenum == 1) {
-            // Blackjack game = Blackjack();
-            // haveMoney = game.play(startingMoney);
+            Blackjack game = Blackjack();
+            game.play(startingMoney);
             cout << "Thanks for playing Blackjack!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         } else if(gamenum == 2) {
             Roulette game = Roulette(startingMoney);
-            play(game);
+            game.play();
             cout << "Thanks for playing Roulette!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         } else if(gamenum == 3) {
             HigherOrLower game = HigherOrLower(startingMoney);
+            haveMoney = game.haveMoney(startingMoney);
             cout << "Thanks for playing Higher-or-Lower!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
