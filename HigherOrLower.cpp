@@ -26,6 +26,7 @@ public:
         card = (pack.deal_one());
         string guess;
         while (playing && !pack.empty() && !loss) {
+            cout << "The current card is the " << card.get_rank() << " of " << card.get_suit() << endl;
             int initialRank = card.get_rank();
             cout << "Is the next card higher or lower?" << endl;
             cin >> guess;
@@ -39,6 +40,7 @@ public:
                 }
             }
             card = (pack.deal_one());
+            cout << "The new card is the " << card.get_rank() << " of " << card.get_suit() << endl;
             int secondRank = card.get_rank();
             if (initialRank == 12) {
                 initialRank = -1;
