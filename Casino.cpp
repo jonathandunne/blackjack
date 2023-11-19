@@ -40,9 +40,9 @@ int main(int argc, char *argv[]) {
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         } else if(gamenum == 3) {
-            HighLow game = HighLow();
+            HighLow game = HigherOrLower();
             haveMoney = game.play(startingMoney);
-            cout << "Thanks for playing High-Low!\n";
+            cout << "Thanks for playing Higher-or-Lower!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         } else {
