@@ -33,9 +33,9 @@ class Blackjack {
 
             //Blackjack Check
             if ((player_hand[0].get_rank() == ACE|| player_hand[1].get_rank() == ACE) &&
-                (player_hand[0].get_rank() > 7 || player_hand[1].get_rank() > 7 &&
-                player_hand[0].get_rank() < 12 || player_hand[1].get_rank() < 12) &&
-                dealer_hand[0].get_rank() != ACE && dealer_hand[1].get_rank() != ACE) {
+                (player_hand[0].get_rank() > 7 || player_hand[1].get_rank() > 7) &&
+                (player_hand[0].get_rank() < 12 || player_hand[1].get_rank() < 12) &&
+                (dealer_hand[0].get_rank() != ACE && dealer_hand[1].get_rank() != ACE)) {
                     cout << "Blackjack! You won $" << ((3 * bet) / 2) << endl;
                     balance += ((3 * bet) / 2);
                     return;
@@ -44,7 +44,7 @@ class Blackjack {
             string input;
             int index = 2;
             //Hit or pass stage
-            while (player_score < 22 && input != "stand" && !player_bust) {
+            while ((player_score < 22) && (input != "stand") && (!player_bust)) {
                 input = "";
                 while (input != "hit" || input != "stand") {
                     if (input != "hit" || input != "stand") {
@@ -71,7 +71,7 @@ class Blackjack {
             int index2 = 2;
             if (input == "stand") {
                 cout << "The dealer flipped over " << dealer_hand[1] << endl;
-                while (dealer_score < 17 && !dealer_bust) {
+                while ((dealer_score < 17) && (!dealer_bust)) {
                     cout << "Dealer hits" << endl;
                     dealer_hand.push_back(pack.deal_one());
                     cout << "Dealer draws " << dealer_hand[index2] << endl;
@@ -133,7 +133,7 @@ class Blackjack {
         }
         void add_score(int points, char p) {
             if (p == 'p') {
-                if (points + player_score > 21 && player_high_aces > 0) {
+                if ((points + player_score > 21) && (player_high_aces > 0)) {
                     player_score += points - 10;
                     player_high_aces--;
                 }
@@ -145,7 +145,7 @@ class Blackjack {
                 }
             }
             else {
-                if (points + dealer_score > 21 && dealer_high_aces > 0) {
+                if ((points + dealer_score > 21) && (dealer_high_aces > 0)) {
                     dealer_score += points - 10;
                     dealer_high_aces--;
                 }

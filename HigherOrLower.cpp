@@ -75,6 +75,12 @@ public:
         }
         balance += bet;
     }
+    bool haveMoney(int &money) {
+        if(money < 10) {
+            return false;
+        }
+        return true;
+    }
 
 private:
     Pack pack;
