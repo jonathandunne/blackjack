@@ -7,19 +7,6 @@ CXX ?= g++
 # Compiler flags
 CXXFLAGS ?= --std=c++17 -Wall -Werror -pedantic -g -Wno-sign-compare -Wno-comment
 
-# Run a regression test
-
-
-.SUFFIXES:
-
-.PHONY: clean
-
-clean:
-	rm -rvf *.out *.exe *.dSYM *.stackdump
-
-# Style check
-CPD ?= /usr/um/pmd-6.0.1/bin/run.sh cpd
-OCLINT ?= /usr/um/oclint-0.13/bin/oclint
 FILES := \
   Card.cpp \
   Pack.cpp \
@@ -27,13 +14,26 @@ FILES := \
   HigherOrLower.cpp \
   Casino.cpp \
   Roulette.cpp
-CPD_FILES := \
-  Card.cpp \
-  Pack.cpp \
-  Blackjack.cpp \
-  HigherOrLower.cpp \
-  Casino.cpp \
-  Roulette.cpp
+
+# Run a regression test
+
+# Executable name
+EXECUTABLE := my_program
+
+# Default target
+all: $(EXECUTABLE)
+
+$(EXECUTABLE): $(FILES)
+	$(CXX) $(CXXFLAGS) -o $(EXECUTABLE) $(FILES)
+
+.PHONY: clean style
+
+clean:
+	rm -rvf $(EXECUTABLE) *.out *.exe *.dSYM *.stackdump
+
+# Style check
+CPD ?= /usr/um/pmd-6.0.1/bin/run.sh cpd
+OCLINT ?= /usr/um/oclint-0.13/bin/oclint
 style :
 	$(OCLINT) \
     -no-analytics \
@@ -54,6 +54,6 @@ style :
     --minimum-tokens 100 \
     --language cpp \
     --failOnViolation true \
-    --files $(CPD_FILES)
+    --files $(FILES)
 	@echo "########################################"
 	@echo "EECS 280 style checks PASS"
