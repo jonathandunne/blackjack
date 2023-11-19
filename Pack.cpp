@@ -2,6 +2,7 @@
 #include <iostream>
 #include <array>
 #include "Pack.hpp"
+#include <cstdlib>
 
 using namespace std;
 
@@ -35,21 +36,18 @@ void Pack::reset() {
 }
 
 void Pack::shuffle() {
-    Pack top_half;
-    Pack bottom_half;
-    for (int j = 0; j < (rand() % 15) + 5; j++) {
-        for (int i = 0; i < 26; i++) {
-            bottom_half.cards[i] = this->cards[i + 12];
-            top_half.cards[i] = this->cards[i];
+    for (int i = 0; i < 500; ++i) {
+        int x = rand() % 53;
+        while (x >= 52) {
+            x = rand() % 53;
         }
-        for (int i = 0; i < 52; i++) {
-            if (i % 2 == 0) {
-                this->cards[i] = bottom_half.cards[i / 2];
-            }
-            else {
-                this->cards[i] = top_half.cards[i / 2];
-            }
+        int y = rand() % 53;
+        while (y == x || y >= 52) {
+            y = rand() % 53;
         }
+        Card temp = cards[y];
+        cards[y] = cards[x];
+        cards[x] = temp;
     }
     this->reset();
 }
