@@ -2,18 +2,40 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "(gdb) Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/my_program",
+      "args": [
+        ""
+      ],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "environment": [
+        "1000"
+      ],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
-<<<<<<< HEAD
-      "args": ["10000"],
-      "cwd": "/Users/erikvn/MHACKS/blackjack",
-      "program": "/Users/erikvn/MHACKS/blackjack/build/Debug/outDebug"
-=======
-      "args": ["100000"],
+      "args": [],
       "cwd": "/Users/asainterose/Documents/MHACKS/blackjack",
       "program": "/Users/asainterose/Documents/MHACKS/blackjack/build/Debug/outDebug"
->>>>>>> f2a271098e67dfb7046f798992c1f1f481e2e6f5
     }
   ]
 }

@@ -12,6 +12,9 @@ using namespace std;
         }
         void Blackjack::play(int& balance) {
             pack.shuffle();
+            cout << "Place your bet: ";
+            cin >> bet;
+            cout << endl;
             while (bet > balance) {
                 if (bet > balance) {
                     cout << "Your bet exceeds your balance. Please bet again." << endl;
@@ -40,22 +43,24 @@ using namespace std;
                     return;
                 }
 
+            add_score(score_card(player_hand[0], 'p'), 'p');
+            add_score(score_card(player_hand[1], 'p'), 'p');
+            add_score(score_card(dealer_hand[0], 'd'), 'd');
+            add_score(score_card(dealer_hand[0], 'd'), 'd');
+
             string input;
             int index = 2;
             //Hit or pass stage
+            input = "";
             while ((player_score < 22) && (input != "stand") && (!player_bust)) {
-                input = "";
-                while (input != "hit" || input != "stand") {
-                    if (input != "hit" || input != "stand") {
+                while (input != "hit") {
+                    if (input != "hit") {
                         cout << "Invalid input, please try again" << endl;
                     }
                     cout << "You have " << player_score << " points" << endl;
                     cout << "Would you like to hit or stand?" << endl;
                     cin >> input;
                     cout << endl;
-                    for (int i = 0; i < input.length(); i++) {
-                        input[i] = tolower(input[i]);
-                    }
                 }
                 
                 
@@ -138,6 +143,7 @@ using namespace std;
                 }
                 else if (points + player_score > 21) {
                     cout << "Bust!" << endl;
+                    player_score += points;
                 }
                 else {
                     player_score += points;
@@ -150,6 +156,7 @@ using namespace std;
                 }
                 else if (points + dealer_score > 21) {
                     cout << "Dealer busted!" << endl;
+                    dealer_score += points;
                 }
                 else {
                     dealer_score += points;

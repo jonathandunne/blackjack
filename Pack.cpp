@@ -13,6 +13,7 @@ Pack::Pack() {
             Rank r = static_cast<Rank>(rank);
             Suit s = static_cast<Suit>(suit);
             Card card(r, s);
+            // change from cards[(suit * 6) + rank - 7] = card
             cards[(suit * 13) + rank] = card;
         }
     }
