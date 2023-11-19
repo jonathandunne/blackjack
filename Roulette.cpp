@@ -60,6 +60,7 @@ bool Roulette::play(int &money) {
     cout << "Place your bet: ";
             cin >> bet;
             cout << endl;
+    int num = rand() % 38;
 
             if (bet == "r/b") {
             // red or black
