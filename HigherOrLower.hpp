@@ -19,7 +19,6 @@ public:
 private:
     Pack pack;
     Card card;
-    double bet;
     int streak;
     bool playing;
     bool loss;

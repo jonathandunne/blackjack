@@ -13,7 +13,9 @@ using namespace std;
     HigherOrLower::HigherOrLower(int &balance) {
         pack.shuffle();
         cout << "Place your bet: ";
-        cin >> bet;
+        string bet_string;
+        cin >> bet_string;
+        int bet = stoi(bet_string);
         cout << endl;
         while (bet > balance) {
             cout << "Bet too large" << endl;
