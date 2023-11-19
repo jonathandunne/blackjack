@@ -6,15 +6,23 @@ using namespace std;
 class Roulette {
     public: 
         Roulette();
-        bool play(int &money);
+        void placeBet(int amount, const std::string& betType, const std::string& betOption);
+        std::pair<std::string, std::string> spin();
+        int calculateWinnings();
+        void play(Roulette& rouletteGame);
     private:
-        string bet;
-        std::map<string, string> my_map;
+        std::map<std::string, std::string> wheel;
+        std::string lastNumberSpun;
+        std::string lastColorSpun;
+        int betAmount;
+        std::string betType;
+        std::string betOption;
         
 };
 
-Roulette::Roulette() {
-    my_map = {
+Roulette::Roulette() : betAmount(0) {
+    std::srand(std::time(nullptr));
+    wheel = { 
         {"00", "g"},
         {"1","r"},
         {"2","b"},
@@ -53,29 +61,68 @@ Roulette::Roulette() {
         {"35","b"},
         {"36","r"},
         {"0","g"}
-    };
+     };
 }
 
-bool Roulette::play(int &money) {
-    cout << "Place your bet: ";
-            cin >> bet;
-            cout << endl;
+void Roulette::placeBet(int amount, const std::string& betType, const std::string& betOption) {
+    this->betAmount = amount;
+    this->betType = betType;
+    this->betOption = betOption;
+}
 
-            if (bet == "r/b") {
-            // red or black
-            // double the money
-            } else if (bet == "o/e") {
-            // odd or even
-            // double the money
-            } else if (bet == "h/l") {
-            // high or low
-            // - number 1 - 18
-            // - number 19 - 36
-            // double the money
-            } else {
-                cout << "This is not a valid type of bet!" << endl;
-                cout << "Try again" << endl;
-                return false;
-            }
+std::pair<std::string, std::string> Roulette::spin() {
+    int randomIndex = std::rand() % wheel.size();
+    auto it = std::next(wheel.begin(), randomIndex);
+    lastNumberSpun = it->first;
+    lastColorSpun = it->second;
+    return *it;
+}
 
+int Roulette::calculateWinnings() {
+    bool isWin = false;
+    if (betType == "r/b") {
+        isWin = (betOption == lastColorSpun);
+    } else if (betType == "o/e") {
+        int number = std::stoi(lastNumberSpun);
+        isWin = ((betOption == "odd") && (number % 2 != 0)) || ((betOption == "even") && (number % 2 == 0));
+    } else if (betType == "h/l") {
+        int number = std::stoi(lastNumberSpun);
+        isWin = ((betOption == "high") && (number >= 19)) || ((betOption == "low") && (number <= 18));
+    }
+
+    if (isWin) {
+        return betAmount * 2;
+    } else {
+        return 0;
+    }
+}
+
+void play(Roulette& rouletteGame) {
+    int betAmount;
+    std::string betType, betOption;
+
+    // Ask for the bet details
+    std::cout << "Enter bet amount: ";
+    std::cin >> betAmount;
+
+    std::cout << "Enter bet type (r/b, o/e, h/l): ";
+    std::cin >> betType;
+
+    std::cout << "Enter bet option (e.g., red, black, odd, even, high, low): ";
+    std::cin >> betOption;
+
+    // Place the bet
+    rouletteGame.placeBet(betAmount, betType, betOption);
+
+    // Spin the wheel and display the result
+    auto result = rouletteGame.spin();
+    std::cout << "The wheel landed on " << result.first << " which is " << result.second << std::endl;
+
+    // Calculate and display winnings
+    int winnings = rouletteGame.calculateWinnings();
+    if (winnings > 0) {
+        std::cout << "You won " << winnings << "!" << std::endl;
+    } else {
+        std::cout << "You lost your bet." << std::endl;
+    }
 }
