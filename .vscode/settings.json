@@ -1,7 +1,8 @@
 {
   "files.associations": {
     "iostream": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "ostream": "cpp"
   },
   "C_Cpp_Runner.cCompilerPath": "clang",
   "C_Cpp_Runner.cppCompilerPath": "clang++",

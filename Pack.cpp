@@ -13,7 +13,7 @@ Pack::Pack() {
             Rank r = static_cast<Rank>(rank);
             Suit s = static_cast<Suit>(suit);
             Card card(r, s);
-            cards[(suit * 6) + rank - 7] = card;
+            cards[(suit * 13) + rank] = card;
         }
     }
 }
@@ -36,19 +36,16 @@ void Pack::reset() {
 }
 
 void Pack::shuffle() {
-    for (int i = 0; i < 500; ++i) {
-        int x = rand() % 53;
-        while (x >= 52) {
-            x = rand() % 53;
-        }
-        int y = rand() % 53;
-        while (y == x || y >= 52) {
-            y = rand() % 53;
-        }
-        Card temp = cards[y];
-        cards[y] = cards[x];
-        cards[x] = temp;
+    srand(time(NULL));
+
+    // Implementing Fisher-Yates shuffle
+    for (int i = 51; i > 0; --i) {
+        int j = rand() % (i + 1);
+        Card temp = cards[i];
+        cards[i] = cards[j];
+        cards[j] = temp;
     }
+
     this->reset();
 }
 

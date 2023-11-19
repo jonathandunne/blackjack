@@ -19,7 +19,7 @@ public:
 private:
     Pack pack;
     Card card;
-    int streak;
+    int streak = 0;
     bool playing;
     bool loss;
 };
