@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
         cout << "Select which game you want to play: ";
         cin >> gamenum;
         if(gamenum == 0) {
-            cout << "Thanks for playing!";
+            cout << "Thanks for playing!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         }
@@ -34,8 +34,8 @@ int main(int argc, char *argv[]) {
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
         } else if(gamenum == 2) {
-            Roulette game = Roulette();
-            // haveMoney = game.play(startingMoney);
+            Roulette game = Roulette(startingMoney);
+            play(game);
             cout << "Thanks for playing Roulette!\n";
             cout << "This is your current balance: " << startingMoney; 
             cout << "\n";
