@@ -1,5 +1,6 @@
 #include "Card.hpp"
 #include "Pack.hpp"
+#include "Blackjack.hpp"
 #include <iostream>
 #include <fstream>      
 #include <array>

@@ -1,5 +1,6 @@
 #include "Card.hpp"
 #include "Pack.hpp"
+#include "HigherOrLower.hpp"
 #include <iostream>
 #include <fstream>
 #include <array>

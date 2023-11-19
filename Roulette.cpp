@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Roulette.hpp"
 #include <string>
 #include <map>
 using namespace std;
