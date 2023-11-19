@@ -55,7 +55,7 @@ HigherOrLower::HigherOrLower(int &balance) : streak(0), playing(true), loss(fals
 
         if (guess == "higher" && initialRank < secondRank) {
             streak += 1;
-            bet *= 1.0 / (13 - initialRank / 13.0);
+            bet *= 1.0 / ((13 - initialRank) / 13.0);
         } else if (guess == "lower" && secondRank < initialRank) {
             streak += 1;
             bet *= 1.0 / ((initialRank) / 13.0);
@@ -64,7 +64,7 @@ HigherOrLower::HigherOrLower(int &balance) : streak(0), playing(true), loss(fals
             playing = false;
         }
         if (playing) {
-            cout << "Your bet is now worth: " << floor(bet) << endl;
+            cout << "Your bet is now worth: $" << floor(bet) << endl;
             cout << "Do you want to continue (Y/N)?" << endl;
             string choice;
             cin >> choice;

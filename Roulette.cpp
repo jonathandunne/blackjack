@@ -80,7 +80,7 @@ pair<string, string> Roulette::spin() {
 int Roulette::calculateWinnings() {
     bool isWin = false;
     if (betType == "r/b") {
-        isWin = (betOption == lastColorSpun);
+        isWin = (tolower(betOption[0]) == lastColorSpun[0]);
     } else if (betType == "o/e") {
         int number = stoi(lastNumberSpun);
         isWin = ((betOption == "odd") && (number % 2 != 0)) || ((betOption == "even") && (number % 2 == 0));
@@ -132,6 +132,6 @@ int Roulette::play() {
     } else {
         cout << "You lost your bet." << endl;
     }
-    cout << "Your current balance is: " << this -> getPlayerMoney() << endl;
+    cout << "Your current balance is: $" << this -> getPlayerMoney() << endl;
     return getPlayerMoney();
 }
