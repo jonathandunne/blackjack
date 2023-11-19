@@ -4,24 +4,28 @@
 using namespace std;
 
 class Roulette {
-    public: 
-        Roulette();
-        void placeBet(int amount, const std::string& betType, const std::string& betOption);
-        std::pair<std::string, std::string> spin();
-        int calculateWinnings();
-        void play(Roulette& rouletteGame);
-    private:
-        std::map<std::string, std::string> wheel;
-        std::string lastNumberSpun;
-        std::string lastColorSpun;
-        int betAmount;
-        std::string betType;
-        std::string betOption;
-        
+public: 
+    Roulette(int startingMoney);
+    void setStartingMoney(int amount);
+    void placeBet(int amount, const string& betType, const string& betOption);
+    pair<string, string> spin();
+    int calculateWinnings();
+    void play(Roulette& rouletteGame);
+    int getPlayerMoney() const {
+        return playerMoney;
+    }
+private:
+    map<string, string> wheel;
+    string lastNumberSpun;
+    string lastColorSpun;
+    int betAmount;
+    string betType;
+    string betOption;
+    int playerMoney;
 };
 
-Roulette::Roulette() : betAmount(0) {
-    std::srand(std::time(nullptr));
+Roulette::Roulette(int startingMoney) : betAmount(0), playerMoney(startingMoney) {
+    srand(time(nullptr));
     wheel = { 
         {"00", "g"},
         {"1","r"},
@@ -64,15 +68,24 @@ Roulette::Roulette() : betAmount(0) {
      };
 }
 
-void Roulette::placeBet(int amount, const std::string& betType, const std::string& betOption) {
-    this->betAmount = amount;
-    this->betType = betType;
-    this->betOption = betOption;
+void Roulette::setStartingMoney(int amount) {
+    playerMoney = amount;
 }
 
-std::pair<std::string, std::string> Roulette::spin() {
-    int randomIndex = std::rand() % wheel.size();
-    auto it = std::next(wheel.begin(), randomIndex);
+void Roulette::placeBet(int amount, const string& betType, const string& betOption) {
+    if (amount <= playerMoney) {
+        this->betAmount = amount;
+        this->betType = betType;
+        this->betOption = betOption;
+    } else {
+        cout << "Insufficient funds for this bet.\n";
+        betAmount = 0;
+    }
+}
+
+pair<string, string> Roulette::spin() {
+    int randomIndex = rand() % wheel.size();
+    auto it = next(wheel.begin(), randomIndex);
     lastNumberSpun = it->first;
     lastColorSpun = it->second;
     return *it;
@@ -88,41 +101,47 @@ int Roulette::calculateWinnings() {
     } else if (betType == "h/l") {
         int number = std::stoi(lastNumberSpun);
         isWin = ((betOption == "high") && (number >= 19)) || ((betOption == "low") && (number <= 18));
+    } else if (betType == "number") {
+        int number = std::stoi(lastNumberSpun);
+        isWin = (betOption == std::to_string(number));
     }
 
     if (isWin) {
+        playerMoney += betAmount; // Win doubles the bet amount
         return betAmount * 2;
     } else {
+        playerMoney -= betAmount; // Lose the bet amount
         return 0;
     }
 }
 
 void play(Roulette& rouletteGame) {
     int betAmount;
-    std::string betType, betOption;
+    string betType, betOption;
 
     // Ask for the bet details
-    std::cout << "Enter bet amount: ";
-    std::cin >> betAmount;
+    cout << "Enter bet amount: ";
+    cin >> betAmount;
 
-    std::cout << "Enter bet type (r/b, o/e, h/l): ";
-    std::cin >> betType;
+    cout << "Enter bet type (r/b, o/e, h/l, number): ";
+    cin >> betType;
 
-    std::cout << "Enter bet option (red, black, odd, even, high, low): ";
-    std::cin >> betOption;
+    cout << "Enter bet option (for color: red/black, for odd/even: odd/even, for high/low: high/low, for number: any number): ";
+    cin >> betOption;
 
     // Place the bet
     rouletteGame.placeBet(betAmount, betType, betOption);
 
     // Spin the wheel and display the result
     auto result = rouletteGame.spin();
-    std::cout << "The wheel landed on " << result.first << " which is " << result.second << std::endl;
+    cout << "The wheel landed on number " << result.first << " which is color " << result.second << endl;
 
     // Calculate and display winnings
     int winnings = rouletteGame.calculateWinnings();
     if (winnings > 0) {
-        std::cout << "You won " << winnings << "!" << std::endl;
+        cout << "You won " << winnings << "!" << endl;
     } else {
-        std::cout << "You lost your bet." << std::endl;
+        cout << "You lost your bet." << endl;
     }
+    cout << "Your current balance is: " << rouletteGame.getPlayerMoney() << endl;
 }
